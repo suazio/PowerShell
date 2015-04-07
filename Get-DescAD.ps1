@@ -1,11 +1,12 @@
-Function Get-Desc {
+Function Get-ADdesc {
 
-Param(
-[Parameter(Mandatory=$True)]
-$Name
-)
+    Param(
+    [Parameter(Mandatory=$True)]
+    [string]$Name
+    )
 
-$Name = "*$Name*"
-Get-ADComputer -Filter {Description -Like $Name} -Properties Description,LastLogonDate,Operatingsystem | Select-Object Description,Name,OperatingSystem,LastLogonDate,Enabled
+   
+    Get-ADComputer -Filter {Description -Like '*$Name*'} -Properties Description,LastLogonDate,Operatingsystem | 
+    Select-Object Description,Name,OperatingSystem,LastLogonDate,Enabled
 
 }
